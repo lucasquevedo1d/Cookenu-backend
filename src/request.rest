@@ -1,0 +1,50 @@
+
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+   
+   "name": "Luiz",  
+   "email": "Luiz@gmail.com" ,
+   "password": "SenhaSuperSegura",
+   "role":"ADMIN"
+}
+###
+# @name login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+
+"email": "Luiz@gmail.com" ,
+"password": "SenhaSuperSegura"
+
+}
+
+###
+@token = {{login.response.body.token}}
+GET http://localhost:3003/user
+Content-Type: application/json
+Authorization: {{token}}
+
+###
+@token = {{login.response.body.token}}
+GET http://localhost:3003/user/f9cb242b-6cbd-469b-8fc8-0a82c5a9e192
+Authorization: {{token}}
+
+###
+@token = {{login.response.body.token}}
+POST http://localhost:3003/Recipes
+Content-Type: application/json
+Authorization: {{token}}
+
+{ 
+
+   "title": "Pão de queijo",
+   "description": "Pão de queijo"
+
+}
+###
+@token = {{login.response.body.token}}
+GET http://localhost:3003/recipe/88410e31-1270-4936-ab6e-568c044faafe
+Authorization: {{token}}
